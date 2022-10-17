@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./include/header'); %>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="ti-settings"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default"></div>
+            </div>
+          </div>
+        </div>  
+        <!-- partial -->
+        <!-- partial:partials/_sidebar.html -->
+        <%- include('./include/sidebar'); %>
+           <!-- partial -->
+           <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="row">
+                <div class="col-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Iqamah Date</h4>
+                      <p class="card-description"></p>
+                      <form
+                        class="forms-sample"
+                        id="insertUser"
+                        method="post"
+                        role="form">
+                     
+                        <div class="form-group displayinlinemd">
+                        <label for="start">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" min="2018-01-01" max="2040-12-31">
+                          </div>
+
+                      <div class="form-group displayinlinmd">
+                        <label for="end">End Date</label>
+                        <input type="date" id="endDate" name="endDate"
+                         min="2018-01-01" max="2040-12-31">
+                         </div>
+
+                        <div class="form-group">
+                        <label for="FajrTime">Fajr Minute</label>
+                        <input
+                          type="number"
+                          maxlength="3"
+                          class="form-control"
+                          name="FajrTime"
+                          id="FajrTime"
+                          placeholder="Fajr Time"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="DuhaTime">Duha Minute</label>
+                        <input
+                        type="number"
+                        maxlength="3"
+                          class="form-control"
+                          name="DuhaTime"
+                          id="DuhaTime"
+                          placeholder="Duha Time"
+                        />
+                      </div>        
+                      <div class="form-group">
+                        <label for="DhuhrTime">Dhuhr Minute</label>
+                        <input
+                        type="number"
+                        maxlength="3"
+                          class="form-control"
+                          name="DhuhrTime"
+                          id="DhuhrTime"
+                          placeholder="Dhuhr Time"
+                        />
+                      </div>         
+                      <div class="form-group">
+                        <label for="AsrTime">Asr Minute</label>
+                        <input
+                        type="number"
+                        maxlength="3"
+                          class="form-control"
+                          name="AsrTime"
+                          id="AsrTime"
+                          placeholder="Asr Time"
+                        />
+                      </div>     
+                      <div class="form-group">
+                        <label for="MaghribTime">Maghrib Minute</label>
+                        <input
+                          type="number"
+                          maxlength="3"
+                          class="form-control"
+                          name="MaghribTime"
+                          id="MaghribTime"
+                          placeholder="Maghrib Time"
+                        />
+                      </div>     
+                      <div class="form-group">
+                        <label for="IshaTime">Isha Minute</label>
+                        <input
+                         type="number"
+                          maxlength="3"
+                          class="form-control"
+                          name="IshaTime"
+                          id="IshaTime"
+                          placeholder="Isha Time"
+                        />
+                      </div>            
+                      <button type="submit" class="btn btn-primary mr-2">
+                        Submit
+                      </button>
+                      <button class="btn btn-light">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+          
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+  </body>
+</html>
+
+<script>
+  $(function () {
+    $("#insertUser").validate({
+      errorPlacement: function (error, element) {
+        $(element)
+          .closest("form")
+          .find("label[for='" + element.attr("id") + "']")
+          .append(error);
+      },
+
+      errorElement: "span",
+      rules: {
+        userName: {
+          required: true,
+          maxlength: 3,
+        },
+
+        userEmail: {
+          required: true,
+          maxlength: 3,
+        },
+
+        adhanDetail: {
+          required: true,
+          maxlength: 3,
+        },
+
+        jummahDetail: {
+          required: true,
+          maxlength: 3,
+        },
+      },
+      submitHandler: function () {
+        let formData = $("#insertUser").serialize();
+        $.ajax({
+          url: "/admin/insert-iqumah",
+          data: formData,
+          cache: false,
+          processData: false,
+          method: "POST",
+          type: "POST",
+          success: function (_res) {
+            $("#insertUser").trigger("reset");
+            let successConfig = {
+              title: "Confirmation",
+              message: `Operation performed successfully.`,
+              type: "success",
+            };
+            KWACHA_MAIN.sweetAlert(successConfig);
+          },
+          error: function (e) {
+            let responseText = JSON.parse(e.responseText);
+            let errorConfig = {
+              title: "Error",
+              message: responseText.message,
+              type: "error",
+            };
+            KWACHA_MAIN.sweetAlert(errorConfig);
+          },
+        });
+      },
+    });
+  });
+</script>

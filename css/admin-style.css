@@ -1,0 +1,273 @@
+.areaSocial {
+    width: 100%;
+    float: left;
+}
+.areaSocial>.areaSocialul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: inline-block;
+}
+.areaSocial>.areaSocialul>li {
+    margin: 0px;
+    padding: 0px 5px;
+    float: left;
+}
+.areaSocial>.areaSocialul>li>a {
+    background: #55AA8B;
+    padding: 16px 6px;
+    border-radius: 65%;
+    font-size: 10px;
+    float: left;
+    text-align: center;
+    line-height: 20px !important;
+    color:#fff;
+}
+
+.donationform .form-group {
+    display: inline-block;
+    padding: 0px 5px;
+    margin: 0px 0 5px 0;
+    float: left;
+}
+input#start {
+    margin-left: 84px;
+    width: 24%;
+}
+a.creatjummha {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 60px;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .jummhacent {
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+    margin-bottom: 20px;
+}
+input#start {
+    margin-left: 84px;
+    width: 24%;
+}
+.editEmployeeModlFrom{
+    padding: 8px 16px;
+    overflow: auto;
+    height: 400px;
+}
+
+/* form.editEmployeeModlFrom div.editEmployeeresponseFrom{
+    min-height: 150px;
+    padding: 6px 0;
+} */
+/* button.btn.btn-primary.mr-2 {
+    width: 45%;
+    margin-left: 233px;
+    margin-top: 20px;
+} */
+/* button.btn.btn-light {
+    margin-right: 107px;
+    width: 88%;
+} */
+
+
+ul.nav.flex-column.sub-menu {
+    position: absolute;
+    background: #55aa8b;
+    box-shadow: 0 0 8px #ccc;
+    top: 100%;
+    border-radius: 5px;
+    padding: 10px;
+}
+ul.nav.flex-column.sub-menu a.nav-link {
+    color: #fff;
+}
+a.nav-link {
+    color: #2a2a2a;
+    font-weight: 600;
+}
+a.nav-link.active {
+    color: #55aa8b;
+}
+a.nav-link:hover{
+
+}
+div#users-elements {
+    height: auto !important;
+}
+div#prayers-elements {
+    height: auto !important;
+}
+input#startDate {
+    width: 100%;
+    display: block;
+    border: 1px solid #CED4DA;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    padding: 0.875rem 1.375rem;
+}
+input#endDate {
+    width: 100%;
+    display: block;
+    border: 1px solid #CED4DA;
+    font-weight: 400;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    padding: 0.875rem 1.375rem;
+}
+.form-group.displayinlinemd {
+    display: inline-block;
+    width: 49%;
+    margin-right: 15px;
+}
+.form-group.displayinlinmd {
+    display: inline-block;
+    width: 48%;
+    margin-left: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+ul.navbar-nav.navbar-nav-right {
+    margin-left: 0 !important;
+}
+/* ul.dropdown li a.active {
+    color: #55aa8b;
+} */
+ul.dropdown {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    justify-content: end;
+    margin-right: 30px;
+}
+ul.dropdown li {
+    display: inline-block;
+}
+ul.dropdown li a {
+    color: #2a2a2a;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 5px;
+    margin:  5px;
+    transition: all 0.4s ease;
+}
+
+ul.dropdown li a:hover {
+    color: #55aa8b;
+}
+.dropdown li:hover ul.dropdownlist {
+    display: block;
+    position: absolute;
+    top: 100%;
+    background: #55aa8b;
+    width: auto;
+    box-shadow: 0 0 8px #ccc;
+    margin-left: 10px;
+}
+.dropdown li:hover ul.dropdownlist li a {
+    color: #fff;
+    padding: 0;
+    display: block;
+    font-weight: 500;
+    text-align: left;
+}
+ul.dropdownlist li {
+    list-style: none;
+    display: block;
+}
+ul.dropdown li {
+    list-style: none;
+}
+ul.dropdownlist{
+    display: none;
+    transition: all 0.4s ease;
+    padding: 0;
+}
+ul.dropdownist{
+    display: none;
+    padding: 0;
+}
+/* jummahh */
+ul.dropdownlist li.jummahh:hover ul.dropdownist {
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 100%;
+    background: #55aa8b;
+    width: auto;
+    box-shadow: 0 0 8px #ccc;
+}
+ul.dropdownlist li.Iqamahhh:hover ul.dropdownist {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background: #55aa8b;
+    width: 140px;
+    box-shadow: 0 0 8px #ccc;
+}
+
+
+/* Meeting */
+ul.dropdownlist li.Meeting:hover ul.dropdownist {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    background: #55aa8b;
+    width: 160%;
+    box-shadow: 0 0 8px #ccc;
+}
+/* Meeting */
+ul.dropdownlist li.voting:hover ul.dropdownist {
+    display: block;
+    position: absolute;
+    top: 40px;
+    left: 100%;
+    background: #55aa8b;
+    width: 160%;
+    box-shadow: 0 0 8px #ccc;
+}
+
+.dropdown li ul.dropdownlist li{
+    padding: 0 10px;
+}
+table.table.table-striped thead tr th {
+    background-color: #55aa8b;
+    color: #fff;
+}
+nav.navbar.col-lg-12.col-12.p-0.fixed-top.d-flex.flex-row {
+    background: #fff;
+}
+
+.dropdown li ul.dropdownlist li a:hover {
+    color: #000;
+}
+span#userEmail-error {
+    color: red;
+}
+
+
+i.ti-angle-down.imageicons {
+    font-size: 10px;
+    color: black;
+    font-weight: 800;
+}
+i.ti-angle-down.jummah {
+    font-size: 10px;
+    color: #fff;
+    font-weight: 800;
+}

@@ -1,0 +1,133 @@
+<table class="table table-striped display" id="example" style="width:100%">
+  <thead>
+      <tr>
+        <th> Images </th>
+        <th> Title Name </th>
+        <!-- <th> Status </th> -->
+        <th> Action </th>
+      </tr>
+  </thead>
+  <tbody>
+      <%  _data = data; 
+          if ( _data.length > 0 ) { %>
+             <% for(var i = 0; i<_data.length; i++) {  %>
+              <tr>
+                  <td class="py-1">
+                     <%= _data[i]['ann_image_url'] %>
+                  </td>
+                  <td>
+                      <%= _data[i]['ann_image_title'] %>
+                  </td>
+<!-- 
+                  <td>
+                      <% if ( _data[i]['ann_active'] == '1'){%> Enabled <% } else {%> Disabled <% }%>
+                  </td> -->
+                  <td>
+
+                   
+      
+                      <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" onclick="setAnnouncementsId(`<%=_data[i]['ann_uuid']%>`)">
+
+                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" onclick="setAnnouncementsId(`<%=_data[i]['ann_uuid']%>`)">
+
+                          <i style="color: #01805c;" class="fas fa-trash-alt"></i>
+                      </a>
+                  </td>
+              </tr>
+          <% } %>
+      <% } else { %> 
+          <tr class="no-record-row">
+              <td colspan="5" style='text-align:center; vertical-align:middle'><span>No record found</span></td>
+          </tr>
+      <% }%>
+   
+  </tbody>
+</table> 
+  
+  <!-- start datatable 15-09-2022 -->
+  <script>
+  $(document).ready(function () {
+      $('#example').DataTable({
+      
+    });
+  });
+</script>
+
+<!-- End datatable 15-09-2022 -->
+
+<!--Start Delete User Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <Announcements>`
+              <input type="hidden" id="hiddenAnnouncements">
+              <div class="modal-header">						
+                  <h4 class="modal-title">Delete key List</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">					
+                  <p>Are you sure you want to delete this user?</p> 
+                  <p class="text-warning"><small>This action cannot be undone.</small></p>
+              </div>
+              <div class="modal-footer">
+                  <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+                  <input type="button" style="background-color: #01805c; color: #fff;" 
+                  type="submit" class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteAnnouncements()" id="userdata">
+
+              </div>
+            </Announcements>
+        </div>
+    </div>
+</div>
+
+<!--End Delete User Modal HTML -->   
+
+ 
+<script>
+
+function setAnnouncementsId(id)
+{
+  $("#hiddenAnnouncements").val(id)
+;
+}
+KWACHA_ADMIN.deleteAnnouncements = function () {
+  $("#userdata").html('Processing...');
+  let announcementsId = $("#hiddenAnnouncements").val();
+
+  // if (userUuid) {
+    $.ajax({
+      url: "/admin/delete-announcements",
+      data: "announcementsId=" + announcementsId,
+      cache: false,
+      processData: false,
+      method: "POST",
+      type: "POST",
+      success: function (_res) {
+
+        $("#hiddenAnnouncements").val("");
+
+        let successConfig = {
+          title: "Confirmation",
+          message: `Operation performed successfully.`,
+          type: "success",
+        };
+        KWACHA_MAIN.sweetAlert(successConfig);
+      },
+      error: function (e) {
+        $("#userdata").html("");
+        let responseText = JSON.parse(e.responseText);
+        let errorConfig = {
+          title: "Error",
+          message: responseText.message,
+          type: "error",
+        };
+        KWACHA_MAIN.sweetAlert(errorConfig);
+      },
+    });
+window.location.reload();
+}
+
+// }
+  //End-user Delete
+</script>

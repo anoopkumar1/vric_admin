@@ -1,0 +1,124 @@
+
+<table class="table table-striped display" id="example" style="width:100%">
+    <thead>
+        <tr>
+            <th>Fajr Time</th>
+            <th>Duha Time</th>
+            <th>Dhuhr Time</th>
+            <th>Asr Time</th>
+            <th>Maghrib Time</th>
+            <th>Isha Time</th>
+            <th>Date</th>
+         
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% _data = data ; if(_data.length > 0 ) { %>
+        <% for (var i=0; i<_data.length; i++) { %>
+
+        <tr>
+            <td class="py-1"><%= _data[i]['pdi_fajr'] %></td>
+            <td><%= _data[i]['pdi_duha'] %></td>
+            <td>
+            <%= _data[i]['pdi_dhuhr'] %>
+            </td>
+            <td>
+            <%= _data[i]['pdi_asr'] %>
+            </td>
+            <td>
+            <%= _data[i]['pdi_maghrib'] %>
+            </td>
+            <td>
+            <%= _data[i]['pdi_isha'] %>
+            </td>
+            <td>
+            <%= _data[i]['pdi_date'] %>
+            </td>
+            <td> 
+            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal" onclick="setIqumahId(`<%=_data[i]['pdi_uuid']  %>`)">
+                <i style="color: #01805c;" class="fas fa-trash-alt"></i>
+                <% } %> 
+            <% } else 
+            { %>
+            <tr class="no-record-row">
+            <td colspan="6" style="text-align: center; vertical-align: middle;"><span>No record found</span></td>
+        </tr>
+
+        <% } %>
+    </tbody>
+</table>
+
+  <!-- start datatable 20-09-2022 -->
+  <script>
+    $(document).ready(function () {
+       $('#example').DataTable({
+        
+      });
+   });
+  </script>
+<!--Start Delete User Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+<div class="modal-content">
+<form>`
+<input type="hidden" id="hiddenuser">
+<div class="modal-header">						
+<h4 class="modal-title">Delete Iqamah List</h4>
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">					
+<p>Are you sure you want to delete this user?</p>
+<p class="text-warning"><small>This action cannot be undone.</small></p>
+</div>
+<div class="modal-footer">
+<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+
+<input type="button" style="background-color: #01805c; color: #fff;" 
+type="submit" class="btn btn" value="Delete" onclick="KWACHA_ADMIN.deleteIqumah()"id="userdata">
+</div>
+</form>
+</div>
+<!--End Delete User Modal HTML -->   
+<script>
+//Start-user Delete
+function setIqumahId (id) {
+    $("#hiddenuser").val(id);
+    }
+    KWACHA_ADMIN.deleteIqumah = function () {
+    $("#userdata").html('Processing...');
+    let iqamahId = $("#hiddenuser").val();
+
+// if (userUuid) {
+$.ajax({
+        url: "/admin/delete-iqumah",
+        data: "iqamahId=" + iqamahId,
+        cache: false,
+        processData: false,
+        method: "POST",
+        type: "POST",
+        success: function (_res) {
+        $("#hiddenuser").val("");
+        let successConfig = {
+        title: "Confirmation",
+        message: `Operation performed successfully.`,
+        type: "success",
+        };
+KWACHA_MAIN.sweetAlert(successConfig);
+    },
+    error: function (e) {
+    $("#userdata").html("");
+    let responseText = JSON.parse(e.responseText);
+    let errorConfig = {
+    title: "Error",
+    message: responseText.message,
+    type: "error",
+    };
+    KWACHA_MAIN.sweetAlert(errorConfig);
+    },
+    });
+    window.location.reload();
+    }
+// }
+//End-user Delete
+</script>

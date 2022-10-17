@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./include/header'); %>
+  
+
+    <body>
+    <div class="container-scroller">
+        <!-- partial:../../partials/_navbar.html -->
+        <%- include('./include/topbar'); %>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+            <div id="settings-trigger"><i class="ti-settings"></i></div>
+            <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+                <div class="tiles success"></div>
+                <div class="tiles warning"></div>
+                <div class="tiles danger"></div>
+                <div class="tiles info"></div>
+                <div class="tiles dark"></div>
+                <div class="tiles default"></div>
+            </div>
+            </div>
+        </div>
+       
+        <!-- partial -->
+          <!-- partial:partials/_sidebar.html -->
+          <%- include('./include/sidebar'); %>
+        <!-- partial -->
+        <div class="main-panel">        
+            <div class="content-wrapper">
+            <div class="row">
+                
+				
+              
+                <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-description">
+                   
+                    </p>
+                    <div class="forms-sample"  method="post" role="form">
+                        <form action="/uploadphoto" enctype="multipart/form-data" method="POST">
+                            <input type="file" id="file" name="myImage" accept=".png, .jpg, .jpeg">
+					<div class="form-group">
+				   
+				
+                        </form>
+				
+                    </div>
+                       
+                        <button type="submit" id="file" onclick="USER.uploadUserImage();"class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </form>
+					
+                    </div>
+                </div>
+                </div>          
+            </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:../../partials/_footer.html -->
+            <footer class="footer">
+           
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+    </body>
+
+</html>
+<script>
+
+
+
+let USER         = {};	
+	var loadFile  = function (event) {
+		var image = document.getElementById("output");
+		image.src = URL.createObjectURL(event.target.files[0]);
+	};
+	$(document).on('change', '#file', function (e) {
+		let name = document.getElementById("file").files[0].name;
+		let ext  = name.split('.').pop().toLowerCase();
+		if ( jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1 ) {
+			swal({
+				title: 'Failed',
+				text: "Invalid image file",
+				type: "error",
+				confirmButtonText: 'Okay'
+			})
+			return false;
+		}
+
+		let f = document.getElementById("file").files[0];
+		let fsize = f.size || f.fileSize;
+
+		if ( fsize > 4000000 ) {
+			
+			swal({
+				title: 'Failed',
+				text: "Image file size is too large ",
+				type: "error",
+				confirmButtonText: 'Okay'
+			});
+
+		} else {
+			//USER.uploadUserImage();
+			let oFReader = new FileReader();
+			oFReader.readAsDataURL(document.getElementById("file").files[0]);
+			oFReader.onload = function (e) {
+				$("#imageRefresh").attr("src", e.target.result);
+				//$("#userImageDiv").html('<img class="user-img imageRefresh" src="' + e.target.result + '">');
+			}
+
+		}
+	});
+
+USER.uploadUserImage = function () {
+
+	if ( document.getElementById("file") ) {
+
+		if ( typeof document.getElementById("file").files[0] != 'undefined' ) {
+
+			var file     = document.getElementById("file").files[0];
+			var formData = new FormData();
+			formData.append("image", file);
+			let title = $("#titleName").val();
+			formData.append('titleName',title);
+			let description = $("#titleName").val();
+			formData.append('titleName',description);
+
+			$.ajax({
+				url         : "/admin/upload-banner-image",
+				data        : formData,
+				dataType    : 'json',
+				cache       : false,
+				contentType : false,
+				processData : false,
+				method      : 'POST',
+				type        : 'POST',
+				
+				success: function (data) {  
+					let successConfig = {
+						title        : 'Confirmation',
+						message      : `Operation performed successfully.` ,
+						type         : 'success',
+					}
+					KWACHA_MAIN.sweetAlert(successConfig);
+				},
+				error: function (error) {
+					
+					let errorConfig = {
+						
+						
+						title   : 'Error',
+						
+						message : "Failed, Please try HGFDTFUYTFUYTDFUYDF7TYIK again.",
+						
+						type    : 'error'
+					};
+				
+					KWACHA_MAIN.sweetAlert(errorConfig);
+					$("#imageRefresh").attr("src", "/admin/theme/images/thumbnail.png");
+					
+				}
+
+			});
+			
+
+		} else {
+			let errorConfig = {
+				title   : 'Error',
+				message : "Please select profile image.",
+				type    : 'error'
+			};
+			KWACHA_MAIN.sweetAlert(errorConfig);
+		}
+		
+	} else {
+		let errorConfig = {
+			title   : 'Error',
+			message : "Please select profile image.",
+			type    : 'error'
+		};
+		KWACHA_MAIN.sweetAlert(errorConfig);
+	}
+	window.location.reload();
+}
+
+</script>

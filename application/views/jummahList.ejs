@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./include/header'); %>
+
+   <!-- start datatable css 15-09-2022 -->
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+   <!-- End datatable css 15-09-2022 -->
+
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <%- include('./include/topbar'); %>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_settings-panel.html -->
+        <div class="theme-setting-wrapper">
+          <div id="settings-trigger"><i class="ti-settings"></i></div>
+          <div id="theme-settings" class="settings-panel">
+            <i class="settings-close ti-close"></i>
+            <p class="settings-heading">SIDEBAR SKINS</p>
+            <div class="sidebar-bg-options selected" id="sidebar-light-theme">
+              <div class="img-ss rounded-circle bg-light border mr-3"></div>
+              Light
+            </div>
+            <div class="sidebar-bg-options" id="sidebar-dark-theme">
+              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
+              Dark
+            </div>
+            <p class="settings-heading mt-2">HEADER SKINS</p>
+            <div class="color-tiles mx-0 px-4">
+              <div class="tiles success"></div>
+              <div class="tiles warning"></div>
+              <div class="tiles danger"></div>
+              <div class="tiles info"></div>
+              <div class="tiles dark"></div>
+              <div class="tiles default"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- partial -->
+        <!-- partial:../../partials/_sidebar.html -->
+        <%- include('./include/sidebar'); %>
+        <!-- partial -->
+        <div class="main-panel">    
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+
+                    <div class="table-responsive dynamic-listing">
+                      <table class="table table-striped display" id="example" style="width:100%">
+                        <thead>
+                            <tr>
+                              <th>
+                                Jummah Type
+                              </th>
+                            <th>
+                              Iqamah Time
+                            </th>
+                            <th>
+                                Adhnan Time
+                            </th>
+                            <th>
+                              Khateeb Name
+                            </th>
+                            <th>
+                              Jummah Date
+                            </th>
+                            <!-- <th>
+                              jummah Day
+                            </th> -->
+                            <th>
+                              Status
+                            </th>
+                            <th>
+                                Action
+                              </th>
+                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                     
+                            <% 
+
+                            _data = jummahList; 
+                    
+                                if ( _data.length > 0 ) { %>
+                                   <% for(var i = 0; i<_data.length; i++) {  %>
+                                    <tr>
+                                      <!-- <th>Iqamah Time</th>   -->
+                                        <td class="py-1">  
+                                        <%= _data[i]['jd_type'] %>
+                                        </td>
+                                        <td>
+                                          <%= _data[i]['jd_iqumah'] %>
+                                      </td>
+                                        <td>
+                                           <%= _data[i]['jd_adhan'] %>
+                                        </td>
+                                        <td>
+                                            <%= _data[i]['jd_khateeb'] %>
+                                        </td>
+                                        <td>
+                                          <%= _data[i]['jd_jummahdate'] %>
+                                      </td>
+                           
+                                        <td>
+                                            <% if ( _data[i]['jd_active'] == '1'){%> Enabled <% } else {%> Disabled <% }%>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="edit jummah_editbtn" dataid="<%=_data[i]['jd_uuid']%>">
+                                                <i style="color: #01805c;" class="fas fa-edit"></i>
+                                            </a>
+                            
+                                            <a href="#" class="delete jummah_deletemodel" dataid="<%=_data[i]['jd_uuid']%>">
+                                                <i style="color: #01805c;" class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <% } %>
+                            <% } else { %> 
+                                <tr class="no-record-row">
+                                    <td colspan="5" style='text-align:center; vertical-align:middle'><span>No record found</span></td>
+                                </tr>
+                            <% }%>
+                         
+                         
+                        </tbody>
+                        </table> 
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+        
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <%- include('./include/footer'); %>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+
+
+<!--Start Delete User Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade" aria-modal="false" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <form class="jummah_deleteFrom">
+          <input type="hidden" id="hiddenjummah">
+          <div class="modal-header">						
+              <h4 class="modal-title">Delete key List</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">					
+               <p>Are you sure you want to delete this user?</p> 
+              <p class="text-warning"><small>This action cannot be undone.</small></p>
+          </div>
+          <div class="modal-footer">
+          <input type="button" class="btn btn-default cancelbtn" data-dismiss="modal" value="Cancel">
+          <input type="button" style="background-color: #01805c; color: #fff;" 
+           id="jummah_deletebtn" class="btn btn" value="Delete">
+          </div>
+      </form>
+      </div>
+      
+</div>
+</div>
+
+
+
+<!--End Delete User Modal HTML -->   
+
+<!--Start Edit User Modal HTML -->
+  <!-- partial -->
+  <div id="editEmployeeModal" class="modal fade"  aria-modal="false" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">						
+          <h4 class="modal-title">Update Jummah List</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div> 
+            <form class="forms-sample editEmployeeModlFrom" id="editEmployeeModlFrom"  method="post" role="form"
+              >
+              <div class="responseformgroup editEmployeeresponseFrom" id="editEmployeeresponseFrom">
+               Please Wait....
+              </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default cancelbtn" data-dismiss="modal" value="Cancel">
+              <button type="submit" class="btn btn-primary mr-2">
+                Update
+               </button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+
+
+  /********************** edit start *************************************/
+
+  $('#editEmployeeModlFrom').on('submit',function(e){
+    e.preventDefault();
+
+    let fromdata=$(this).serialize();
+
+    $.ajax({
+      'url':Homes_url()+'admin/edit-jummah',
+      type:'post',
+      data:fromdata,
+      dataType:'json',
+      success:function(res){
+        if(res.status){
+          const msg ={
+          title: "Confirmation",
+          message:'Operation performed successfully.',
+          type: "success",
+        };
+
+        KWACHA_MAIN.sweetAlert(msg);
+
+        window.location=window.location.href;
+        
+        }else{
+        const msg ={
+        title: "Error",
+        message:'Operation performed failed.',
+        type: "error",
+        };
+
+        KWACHA_MAIN.sweetAlert(msg);
+
+        }
+     
+      },
+      error:function(e){
+        const msg={
+          title: "Error",
+          message:'Update failed...',
+          type: "error"
+        };
+
+       KWACHA_MAIN.sweetAlert(msg);
+    }
+
+    });
+
+  });
+
+
+
+$('.jummah_editbtn').on('click',function(e){
+  e.preventDefault();
+  const dataid=$(this).attr('dataid');
+  let htmls='';
+
+$("#editEmployeeModal").attr('style','padding-right: 19px; display: block;');
+$("#editEmployeeModal").attr('aria-modal','true');
+$("#editEmployeeModal").attr('role','dialog');
+$("#editEmployeeModal").addClass('show');
+
+  if(dataid != ''){
+    $.ajax({
+      'url':Homes_url()+'admin/get_jummah_data_by_id/'+dataid,
+      type:'get',
+      dataType:'json',
+      success:function(res){
+       if(res.status){
+        const obj=res.payload;
+
+        htmls +='<input type="hidden" name="userId" id="hiddeneditjummah" value="'+obj.jd_uuid+'">';
+        htmls +='<div class="form-group">';
+        htmls +='<label for="jummahType">Jummah Type</label>';
+
+        htmls +='<select class="form-control" name="jummahType" id="jummahType">';
+       if(obj.jd_type == 'jummah 1'){
+        htmls +='<option value="jummah 1" selected>jummah 1</option>';
+       }else{
+        htmls +='<option value="jummah 1">jummah 1</option>';
+       }
+
+       if(obj.jd_type == 'jummah 2'){
+        htmls +='<option value="jummah 2" selected>jummah 2</option>';
+       }else{
+        htmls +='<option value="jummah 2">jummah 2</option>';
+       }
+
+       if(obj.jd_type == 'jummah 3'){
+        htmls +='<option value="jummah 3" selected>jummah 3</option>';
+       }else{
+        htmls +='<option value="jummah 3">jummah 3</option>';
+       }
+
+        htmls +='</select>';
+        htmls +=' </div>';
+
+        htmls +='<div class="form-group">';
+        htmls +='<label for="adhanTime">Adhnan Time</label>';
+        htmls +='<input type="time" value="'+obj.jd_adhan+'" step="hour" class="form-control" name="adhanTime" id="adhanTime" placeholder="minutes">';
+        htmls +='</div>';
+
+        htmls +='<div class="form-group">';
+        htmls +='<label for="IqamahTime">Iqamah Time</label>';
+        htmls +='<input type="time" value="'+obj.jd_iqumah+'" step="hour" class="form-control" name="IqamahTime" id="IqamahTime" placeholder="Iqamah time">';
+        htmls +='</div>';
+
+        htmls +='<div class="form-group">';
+        htmls +='<label for="KhateebName">Khateeb Name</label>';
+        htmls +='<input type="name" value="'+obj.jd_khateeb+'" class="form-control" name="KhateebName" id="KhateebName" placeholder="Khateeb Name">';
+        htmls +='</div>';
+
+        htmls +='<div class="form-group">';
+        htmls +='<label for="jummahDate">Jummah Date</label>';
+        htmls +='<input input="" type="date" id="checkInDate" value="'+obj.jd_jummahdate+'" class="form-control" name="jummahDate" placeholder="jummahDate">';
+        htmls +='</div>';
+
+      
+        $('#editEmployeeresponseFrom').html(htmls);
+
+       }else{
+
+        $(".modal").removeAttr('style');
+        $(".modal").attr('aria-modal','false');
+        $(".modal").removeAttr('role');
+        $(".modal").removeClass('show');
+
+        const msg={
+        title: "Error",
+        message:'Edit failed...',
+        type: "error"
+        };
+
+        KWACHA_MAIN.sweetAlert(msg);
+
+       }
+
+      }
+    });
+
+  }else{
+
+    $(".modal").removeAttr('style');
+    $(".modal").attr('aria-modal','false');
+    $(".modal").removeAttr('role');
+    $(".modal").removeClass('show');
+
+    const msg={
+    title: "Error",
+    message:'Edit failed...',
+    type: "error"
+    };
+
+    KWACHA_MAIN.sweetAlert(msg);
+
+  }
+});
+
+/********************** edit end *************************************/
+
+
+
+
+/********************** delete start *************************************/
+  $('.jummah_deletemodel').on('click',function(e){
+  e.preventDefault();
+  const dataid=$(this).attr('dataid');
+
+  if(dataid){
+
+    $('#hiddenjummah').val(dataid);
+    $("#deleteEmployeeModal").attr('style','padding-right: 19px; display: block;');
+    $("#deleteEmployeeModal").attr('aria-modal','true');
+    $("#deleteEmployeeModal").attr('role','dialog');
+    $("#deleteEmployeeModal").addClass('show');
+  
+   
+  }else{
+
+    $('#hiddenjummah').val('');
+
+    $(".modal").removeAttr('style');
+    $(".modal").attr('aria-modal','false');
+    $(".modal").removeAttr('role');
+    $(".modal").removeClass('show');
+
+    const msg={
+    title: "Error",
+    message:'Delete failed...',
+    type: "error"
+    };
+
+    KWACHA_MAIN.sweetAlert(msg);
+  }
+
+});
+
+
+$('#jummah_deletebtn').on('click',function(e){
+  e.preventDefault();
+  const dataid=$('#hiddenjummah').val();
+  if(dataid != ''){
+  
+    $.ajax({
+      'url':Homes_url()+'admin/delete-jummah',
+      type:'post',
+      data:{jummahId:dataid},
+      dataType:'json',
+      success:function(res){
+        const msg ={
+          title: "Confirmation",
+          message: 'Operation performed successfully.',
+          type: "success",
+        };
+
+        KWACHA_MAIN.sweetAlert(msg);
+        window.location=window.location.href;
+
+      },
+      
+      error:function(e){
+        const msg={
+          title: "Error",
+          message:'Delete failed...',
+          type: "error"
+        };
+
+       KWACHA_MAIN.sweetAlert(msg);
+    }
+
+    });
+
+  }else{
+    const msg={
+    title: "Error",
+    message:'Delete failed...',
+    type: "error"
+    };
+
+    KWACHA_MAIN.sweetAlert(msg);
+  }
+
+  $(".modal").removeAttr('style');
+    $(".modal").attr('aria-modal','false');
+    $(".modal").removeAttr('role');
+    $(".modal").removeClass('show');
+
+    $('#hiddenjummah').val('');
+
+});
+
+
+  /********************** delete end *************************************/
+
+
+$('.close').on('click',function(e){
+  e.preventDefault();
+$(".modal").removeAttr('style');
+$(".modal").attr('aria-modal','false');
+$(".modal").removeAttr('role');
+$('.modal').removeClass('show');
+});
+
+
+$('.cancelbtn').on('click',function(e){
+  e.preventDefault();
+$('.modal').removeClass('show');
+$(".modal").removeAttr('style');
+$(".modal").attr('aria-modal','false');
+$(".modal").removeAttr('role');
+});
+
+
+
+
+});
+</script>
+
+
+  </body>
+
+   <!-- start datatable js 15-09-2022 -->
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+ 
+    <!-- End datatable js 15-09-2022 -->
+</html>
+
+<!-- start datatable 15-09-2022 -->
+<script>
+  $(document).ready(function () {
+    $('#example').DataTable({
+      
+    });
+});
+</script>
+
+<!-- End datatable 15-09-2022 -->
+
+    

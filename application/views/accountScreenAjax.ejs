@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="accountmd col-md-12 padding7-5px">
+        <div class="supportshadow">
+            <div class="accountusermd row">
+                <%=_data%>
+            <%  _data = data; 
+            var bonusKeys = 0;
+            var keys      = 0;
+            var balance   = 0;
+            var image     = '/admin/theme/images/thumbnail.png';
+            if ( _data.length > 0 ) {
+                bonusKeys = _data[0]['bonusKeys'];
+                keys      = _data[0]['keys'];
+                balance   = _data[0]['balance'];
+                if ( _data[0]['image'] ) {
+                    image  = 'uploads/user_profile_images/'+_data[0]['image'];
+                }
+            }
+            %>
+
+            <div class="profile-pic">
+                <label class="-label" for="file">
+                <i class="fa-solid fa-camera"></i>
+                <span>Edit Picture</span>
+                </label>
+                <input type='file' id="file" accept=".png, .jpg, .jpeg" />
+                <img src="<%=image%>" id="imageRefresh" width="200" >
+            </div>
+                
+                
+                <div class="accountcon">
+                    <h5 id="userName"></h5> 
+                 
+                 <p>Cash Balance:<span> K<%=balance%></span></p>
+             </div>
+
+            </div>
+            <!-- <div class="edit-profilemd"><a href="#" ><i class="fa-solid fa-camera"></i></a></div> -->
+
+        </div>
+    </div>
+
+    <div class="accountmd col-md-6 padding7-5px">
+        <div class="supportshadow">
+            <div class="accountusermdd text-center">
+                <img src="/admin/theme/images/key1.svg">
+                <div class="accountkey">
+                 <p>No. of Keys: <span><%=keys%></span></p>
+             </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accountmd col-md-6 padding7-5px">
+        <div class="supportshadow">
+            <div class="accountusermd2 text-center">
+                <img src="/admin/theme/images/key1.svg">
+                <div class="accountkey">
+                 <p>No. of Bonus Keys: <span><%=bonusKeys%></span></p>
+             </div>
+            </div>
+        </div>
+    </div>
+</div>

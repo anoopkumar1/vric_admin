@@ -1,0 +1,307 @@
+@media only screen and (max-width: 767px)  {
+
+footer.footer1 {
+    width: 100%;
+}
+.kawacha-dashbrd .kawacha-dashbrd-content p {
+    font-size: 14px;
+}
+.kawacha-bg-scrn {
+    padding-top: 20px;
+
+}
+
+h1.heading-one {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+div#kawach-selectvault-scrn .col-md-2 {
+    width: 33.33%;
+}
+div#kawach-unlockvault-scrn .kawacha-unlock .kawacha-unlock-con {
+    width: 100%;
+    margin: 20px auto;
+}
+
+
+/***** madan css start here ******/
+.accountroy {
+    width: 100%;
+    margin: 0 auto;
+}
+.accountusermd img {
+    width: 100px;
+    height: 100px;
+    margin: 40px 15px;
+}
+div#kawach-buykey-scrn .numkeysmd {
+    width: 100%;
+    margin: 20px auto;
+}
+
+div#kawach-cashout-scrn .kawacha-unlock .kawacha-unlock-con {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.withcash .wclogo img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 20px;
+}
+
+.withcash .wclogo .withcontent {
+    font-size: 18px;
+    width: 60%;
+}
+
+.withcash .wicashmd.row {
+    justify-content: space-between;
+    padding: 20px 0 0 ;
+    color: #fff;
+}
+.kawacha-bg-scrn .graphchart img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.supportcontent h5 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #132322;
+}
+.supportcontent p {
+    color: #132322;
+    font-size: 12px;
+}
+.withcash .suplogo img {
+    width: 30px;
+    height: 30px;
+    margin: 10px 10px 10px 5px;
+}
+
+.loginmd {
+    background: #fff;
+    width: 90% !important;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 15px;
+    padding: 40px 20px !important;
+    margin-top: 80px !important;
+}
+.kawacha-bg-scrn .col-md-2.padding7-5px {
+    width: 33.3%;
+    flex: 33.3%;
+}
+.kawacha-bonus-key img.mdkeyimg {
+    width: 100%;
+    height: 50px !important;
+}
+.kawacha-buy-key label img.mdkeyimg {
+    width: 100%;
+    height: 50px !important;
+}
+.kawacha-select-vault label {
+    padding: 10px;
+
+}
+.kawacha-buy-key h6 {
+    padding-top: 10px;
+    margin: 0;
+}
+.kawacha-bonus-key {
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.25);
+    padding: 10px;
+}
+.kawacha-bonus-key h6.unlockmdcolor {
+    padding-top: 10px;
+}
+div#kawach-buykey-scrn .numkeysmd .col-sm-6.col-xl-4.mdinput.padding7-5px {
+    width: 50%;
+}
+.accountmd.col-md-6 {
+    width: 50%;
+    text-align: center;
+}
+.accountusermdd img {
+    width: 80px;
+    height: 80px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 50%;
+}
+.accountusermd2 img{
+    width: 80px;
+    height: 80px;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 50%;
+}
+.accountkey p {
+    margin-bottom: 5px;
+    color: #4D4D4F;
+    font-size: 14px;
+    word-break: break-word;
+}
+.supportshadow {
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    padding: 10px 20px;
+}
+.supportcontent {
+    margin-top: 10px;
+}
+.accountroy .accountmd {
+    margin-bottom: 0;
+}
+.bgwithcash1 {
+     margin: 0; 
+}
+.bgwithcash2 {
+     margin: 0; 
+}
+.bgwithcash {
+     margin: 0; 
+}
+form.signupin {
+    width: 80%;
+    margin: 0 auto;
+}
+div.spalashscrsign .kawachamd.text-center img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+.profile-pic .-label {
+    cursor: pointer;
+    height: 100px;
+    width: 100px;
+    margin: 0 15px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.profile-pic span {
+    display: inline-flex;
+    /* padding: 0.2em; */
+    /* height: 2em; */
+    margin: 0;
+    line-height: 20px;
+}
+
+
+}
+
+
+
+
+
+@media only screen and (max-width: 1024px) and (min-width: 768px){ 
+
+
+footer.footer1 {
+    width: 100%;
+}
+div#kawach-unlockvault-scrn .kawacha-unlock .kawacha-unlock-con {
+    width: 50%;
+    margin: 20px auto;
+}
+.kawacha-buy-key label img.mdkeyimg {
+    width: 100%;
+    height: 60px !important;
+}   
+.kawacha-buy-key h6.unlockmdcolor {
+    margin: 0;
+    padding: 0;
+}
+.kawacha-buy-key label img.mdkeyimg {
+    width: 100%;
+    height: 100px !important;
+}
+.kawacha-buy-key h6{
+     margin: 0;
+    padding: 0;
+}
+.withcash.col-md-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.kawacha-bg-scrn .col-md-2.padding7-5px {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+div#kawach-cashout-scrn .kawacha-unlock .kawacha-unlock-con {
+    width: 100%;
+    margin: 20px auto;
+}
+.loginmd {
+    background: #fff;
+    width: 70% !important;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 15px;
+}
+.accountroy {
+    width: 70%;
+    margin: 0 auto;
+}
+.bgwithcash1 {
+     margin: 0; 
+}
+.bgwithcash2 {
+     margin: 0; 
+}
+.bgwithcash {
+     margin: 0; 
+}
+form.signupin {
+    width: 40%;
+    margin: 0 auto;
+}
+
+
+
+}
+
+
+
+
+
+
+@media only screen and (max-width: 1200px) and (min-width: 1024px){ 
+
+
+div#kawach-buykey-scrn .numkeysmd .col-sm-6.col-lg-4.col-xl-4.mdinput.padding7-5px {
+    width: 33.3%;
+    flex: 33.3%;
+}
+div#kawach-buykey-scrn .numkeysmd .col-sm-12.col-lg-4.col-xl-4.mdinput.padding7-5px {
+    width: 33.3%;
+    flex: 33.3%;
+}
+.suplogo.row {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+}
+.supportcontent {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+form.signupin {
+    width: 30%;
+    margin: 0 auto;
+}
+
+
+
+
+}
